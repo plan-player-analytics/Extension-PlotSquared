@@ -31,11 +31,11 @@ import java.util.Optional;
  *
  * @author AuroraLS3
  */
-public class NewExtensionFactory {
+public class PlotSquaredExtensionFactory {
 
     private boolean isAvailable() {
         try {
-            Class.forName("");
+            Class.forName("com.plotsquared.core.api.PlotAPI");
             return true;
         } catch (ClassNotFoundException e) {
             return false;
@@ -44,7 +44,7 @@ public class NewExtensionFactory {
 
     public Optional<DataExtension> createExtension() {
         if (isAvailable()) {
-            return Optional.of(new NewExtension());
+            return Optional.of(new PlotSquaredExtension());
         }
         return Optional.empty();
     }

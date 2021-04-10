@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.djrapitops</groupId>
-    <artifactId>Extension-template</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>Extension-PlotSquared</artifactId>
+    <version>5.13.11-R0.1</version>
     <build>
         <plugins>
             <plugin>
@@ -45,7 +45,16 @@
         <!--            <id>velocity-repo</id>-->
         <!--            <url>https://repo.velocitypowered.com/snapshots/</url>-->
         <!--        </repository>-->
-
+        <!-- WorldEdit -->
+        <repository>
+            <id>enginehub</id>
+            <url>https://maven.enginehub.org/repo/</url>
+        </repository>
+        <!-- PlotSquared -->
+        <repository>
+            <id>IntellectualSites</id>
+            <url>https://mvn.intellectualsites.com/content/groups/public/</url>
+        </repository>
         <repository>
             <id>plan-repo</id>
             <url>https://repo.playeranalytics.net/releases</url>
@@ -61,12 +70,12 @@
         </dependency>
 
         <!-- Plugin API Dependency -->
-        <!--        <dependency>-->
-        <!--            <groupId></groupId>-->
-        <!--            <artifactId></artifactId>-->
-        <!--            <version></version>-->
-        <!--            <scope>provided</scope>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>com.plotsquared</groupId>
+            <artifactId>PlotSquared-Core</artifactId>
+            <version>5.13.11</version>
+            <scope>provided</scope>
+        </dependency>
 
         <!-- Platforms -->
 
