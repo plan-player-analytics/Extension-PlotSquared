@@ -24,6 +24,7 @@ package com.djrapitops.extension;
 
 import com.djrapitops.plan.extension.CallEvents;
 import com.djrapitops.plan.extension.DataExtension;
+import com.djrapitops.plan.extension.NotReadyException;
 import com.djrapitops.plan.extension.annotation.DataBuilderProvider;
 import com.djrapitops.plan.extension.annotation.NumberProvider;
 import com.djrapitops.plan.extension.annotation.PluginInfo;
@@ -39,6 +40,7 @@ import com.plotsquared.core.plot.Plot;
 import com.plotsquared.core.plot.PlotId;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -70,7 +72,9 @@ public class PlotSquaredExtension implements DataExtension {
 
     @DataBuilderProvider
     public ExtensionDataBuilder playerData(UUID playerUUID) {
-        PlotPlayer<?> player = plotAPI.wrapPlayer(playerUUID);
+        PlotPlayer<?> player = Optional.ofNullable(plotAPI.wrapPlayer(playerUUID))
+                .orElseThrow(NotReadyException::new);
+
         int allowedPlots = player.getAllowedPlots();
         int plotCount = player.getPlotCount();
 
