@@ -20,7 +20,7 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
 */
-package com.djrapitops.extension;
+package net.playeranalytics.extension.plotsquared;
 
 import com.djrapitops.plan.extension.CallEvents;
 import com.djrapitops.plan.extension.DataExtension;
@@ -33,13 +33,11 @@ import com.djrapitops.plan.extension.icon.Color;
 import com.djrapitops.plan.extension.icon.Family;
 import com.djrapitops.plan.extension.icon.Icon;
 import com.djrapitops.plan.extension.table.Table;
-import com.plotsquared.core.api.PlotAPI;
-import com.plotsquared.core.location.Location;
+import com.plotsquared.core.PlotAPI;
 import com.plotsquared.core.player.PlotPlayer;
 import com.plotsquared.core.plot.Plot;
 import com.plotsquared.core.plot.PlotId;
 
-import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -85,8 +83,7 @@ public class PlotSquaredExtension implements DataExtension {
 
         for (Plot plot : plotAPI.getPlayerPlots(player)) {
             PlotId plotID = plot.getId();
-            Location center = getCenter(plot.getAllCorners());
-            plots.addRow(plotID.toDashSeparatedString(), center.getWorld(), "x:" + center.getX() + " z:" + center.getZ());
+            plots.addRow(plotID.toDashSeparatedString(), plot.getWorldName(), "x:" + plot.getPosition().getX() + ", z:" + plot.getPosition().getZ());
         }
 
         return newExtensionDataBuilder()
@@ -96,19 +93,5 @@ public class PlotSquaredExtension implements DataExtension {
                         .showInPlayerTable()
                         .buildString(plotCount + " / " + allowedPlots))
                 .addTable("plots", plots.build(), Color.GREEN);
-    }
-
-    public Location getCenter(Collection<Location> corners) {
-        String world = "-";
-        int xSum = 0;
-        int zSum = 0;
-        int count = 0;
-        for (Location corner : corners) {
-            world = corner.getWorld();
-            xSum += corner.getX();
-            zSum += corner.getZ();
-            count++;
-        }
-        return new Location(world, xSum / count, 0, zSum / count);
     }
 }
