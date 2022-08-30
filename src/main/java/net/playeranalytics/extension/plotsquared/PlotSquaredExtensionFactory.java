@@ -35,7 +35,7 @@ public class PlotSquaredExtensionFactory {
 
     private boolean isAvailable() {
         try {
-            Class.forName("com.plotsquared.core.api.PlotAPI");
+            Class.forName("com.plotsquared.core.PlotAPI");
             return true;
         } catch (ClassNotFoundException e) {
             return false;
